@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Aleksejs Belasovs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', 'Segoe UI', Arial, sans-serif; background: #f0f2f5; color: #333; min-height: 100vh; }
+
+    header {
+      background: #1a1a2e;
+      color: #fff;
+      padding: 0 2rem;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.18);
+    }
+    .header-brand { font-size: 15px; font-weight: 600; letter-spacing: -0.2px; color: #fff; text-decoration: none; }
+    nav { display: flex; gap: 4px; }
+    nav a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 7px;
+      transition: all 0.2s;
+    }
+    nav a:hover { color: #fff; background: rgba(255,255,255,0.08); }
+    nav a.active { color: #fff; background: rgba(255,255,255,0.1); }
+
+    .about-container { max-width: 780px; margin: 0 auto; padding: 48px 24px 80px; }
+    .profile-card { text-align: center; margin-bottom: 48px; }
+    .profile-photo { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; border: 4px solid white; box-shadow: 0 4px 20px rgba(0,0,0,0.12); margin-bottom: 20px; }
+    .profile-photo-fallback { width: 160px; height: 160px; border-radius: 50%; background: linear-gradient(135deg, #1565C0, #0D47A1); color: white; font-size: 48px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; border: 4px solid white; box-shadow: 0 4px 20px rgba(0,0,0,0.12); margin-bottom: 20px; }
+    .profile-name { font-size: 32px; font-weight: 700; color: #1a1a2e; margin-bottom: 6px; }
+    .profile-title { font-size: 16px; color: #666; font-weight: 400; margin-bottom: 16px; }
+    .social-links { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+    .linkedin-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 24px; background: #0A66C2; color: white; text-decoration: none; border-radius: 8px; font-size: 14px; font-weight: 600; transition: background 0.2s, transform 0.1s; }
+    .linkedin-btn:hover { background: #004182; transform: translateY(-1px); }
+    .linkedin-btn svg { width: 18px; height: 18px; fill: white; }
+    .email-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 24px; background: #333; color: white; text-decoration: none; border-radius: 8px; font-size: 14px; font-weight: 600; transition: background 0.2s, transform 0.1s; }
+    .email-btn:hover { background: #555; transform: translateY(-1px); }
+    .section { background: white; border-radius: 12px; padding: 28px 32px; margin-bottom: 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+    .section-title { font-size: 18px; font-weight: 700; color: #0D47A1; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 2px solid #e3f2fd; display: flex; align-items: center; gap: 10px; }
+    .section-title .icon { font-size: 20px; }
+    .section p { font-size: 14px; line-height: 1.7; color: #444; }
+    .timeline { list-style: none; position: relative; padding-left: 24px; }
+    .timeline::before { content: ''; position: absolute; left: 6px; top: 4px; bottom: 4px; width: 2px; background: #e0e0e0; }
+    .timeline li { position: relative; margin-bottom: 28px; padding-left: 20px; }
+    .timeline li:last-child { margin-bottom: 0; }
+    .timeline li::before { content: ''; position: absolute; left: -20px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: #1565C0; border: 2px solid white; box-shadow: 0 0 0 2px #1565C0; }
+    .timeline .role { font-size: 15px; font-weight: 600; color: #1a1a2e; }
+    .timeline .org { font-size: 13px; font-weight: 500; color: #1565C0; }
+    .timeline .period { font-size: 12px; color: #999; margin: 2px 0 6px; }
+    .timeline .desc { font-size: 13px; color: #555; line-height: 1.6; }
+    .timeline .desc ul { margin: 4px 0 0 16px; }
+    .timeline .desc ul li { margin-bottom: 4px; padding-left: 0; }
+    .timeline .desc ul li::before { display: none; }
+    .skills-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-tag { padding: 6px 14px; background: #e3f2fd; color: #1565C0; border-radius: 20px; font-size: 12px; font-weight: 500; }
+    .lang-grid { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+    .lang-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #444; }
+    .lang-level { font-size: 11px; color: #999; font-weight: 500; }
+    .interests-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+    .interest-tag { padding: 6px 14px; background: #fff3e0; color: #e65100; border-radius: 20px; font-size: 12px; font-weight: 500; }
+    .project-highlight { border-radius: 10px; padding: 20px 24px; margin-bottom: 16px; text-decoration: none; display: block; color: inherit; transition: opacity 0.2s; }
+    .project-highlight:hover { opacity: 0.85; }
+    .project-highlight:last-of-type { margin-bottom: 0; }
+    .project-highlight .title { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+    .project-highlight .desc { font-size: 13px; color: #444; line-height: 1.6; }
+    .footer-note { text-align: center; padding: 24px; font-size: 12px; color: #999; }
+
+    @media (max-width: 600px) {
+      header { padding: 0 1rem; }
+      .about-container { padding: 24px 14px 48px; }
+      .profile-photo, .profile-photo-fallback { width: 110px; height: 110px; }
+      .profile-name { font-size: 22px; }
+      .section { padding: 18px 16px; }
+      .section-title { font-size: 16px; }
+      .linkedin-btn, .email-btn { padding: 8px 16px; font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="/" class="header-brand">Aleksejs Belasovs</a>
+  <nav>
+    <a href="/">Projects</a>
+    <a href="/about" class="active">About</a>
+  </nav>
+</header>
+
+<div class="about-container">
+  <div class="profile-card">
+    <img src="/static/assets/image.jpg" alt="Aleksejs Belasovs" class="profile-photo"
+         onerror="this.style.display='none'; var d=document.createElement('div'); d.className='profile-photo-fallback'; d.textContent='AB'; this.parentNode.insertBefore(d, this.nextSibling);">
+    <div class="profile-name">Aleksejs Belasovs</div>
+    <div class="profile-title">Data &amp; AI Scientist</div>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/aleksejsbelasovs/" target="_blank" rel="noopener" class="linkedin-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a href="mailto:abelasovs2002@gmail.com" class="email-btn">&#9993; Email</a>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="icon">&#128075;</span> About Me</div>
+    <p style="margin-bottom:1.5em;">I am a data scientist with a strong passion for explainable modelling, transport planning, and economic policy analysis. I have a particular interest in how mass transport systems connect communities and support economic growth.</p>
+    <p style="margin-bottom:1.5em;">I believe that transport networks are fundamental to creating more accessible, productive, and inclusive cities. Growing up in Norwich, England, I often wandered along old railway lines that had been converted into pedestrian paths, constantly imagining what they would have been like in their heyday. It was from that early curiosity that my passion for transport truly began.</p>
+    <p style="margin-bottom:1.5em;">I created this page, and the projects it showcases, to help shape the conversation around transport. I believe discussions should not be limited to simple revenue-and-cost calculations for new projects. Instead, we should focus on the broader impact: the benefits to the communities affected and the wider economic opportunities that well-planned transport networks can generate.</p>
+    <p>I hope my data-first approach can inspire others to think differently about transport. If my work resonates with you, or if you would like to discuss ideas, projects, or collaborations, please feel free to reach out. I would love to connect.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="icon">&#127891;</span> Education</div>
+    <ul class="timeline">
+      <li>
+        <div class="role">BSc Economics, Econometrics and Finance (with Placement Year)</div>
+        <div class="org">University of York &mdash; York, England</div>
+        <div class="period">Sep 2020 &ndash; Aug 2024</div>
+        <div class="desc"><ul><li><strong>Grade: 1st Class Honours</strong></li></ul></div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="icon">&#128188;</span> Work Experience</div>
+    <ul class="timeline">
+      <li>
+        <div class="role">AI and Data Science Graduate</div>
+        <div class="org">Lloyds Banking Group &mdash; Edinburgh, Scotland</div>
+        <div class="period">Sep 2025 &ndash; Present</div>
+        <div class="desc"><ul>
+          <li>Utilising cutting-edge AI to improve FX Conversion models generating over &pound;10M in business value</li>
+          <li>Building cutting edge Generative AI based web-scraping solution to empower existing intelligence</li>
+        </ul></div>
+      </li>
+      <li>
+        <div class="role">Private Bank Securities Based Lending Analyst</div>
+        <div class="org">JP Morgan and Chase &mdash; Edinburgh, Scotland</div>
+        <div class="period">Jan 2025 &ndash; Sep 2025</div>
+        <div class="desc"><ul>
+          <li>Underwrote over &pound;500M of securities-backed Lombard loans for individuals and corporates</li>
+          <li>Assessed and calculated derivative trading limits based on client requirements</li>
+          <li>Conducted in-depth analysis of complex, high-value portfolios comprising liquid and tradable assets</li>
+          <li>Automated manual processes using VBA (saving 5+ hours weekly)</li>
+        </ul></div>
+      </li>
+      <li>
+        <div class="role">Research Development Fund Administrator</div>
+        <div class="org">University of York &mdash; York, England</div>
+        <div class="period">Feb 2024 &ndash; Dec 2024</div>
+        <div class="desc"><ul>
+          <li>Managed over &pound;4M in strategic research funding</li>
+          <li>Built back-end data infrastructure for accurate financial reporting</li>
+          <li>Automated application workflows using JavaScript (saving ~4 hours per week)</li>
+        </ul></div>
+      </li>
+      <li>
+        <div class="role">Technical Risk Analyst &mdash; Placement Scheme</div>
+        <div class="org">Lloyds Banking Group &mdash; Edinburgh, Scotland</div>
+        <div class="period">Jul 2022 &ndash; Jul 2023</div>
+        <div class="desc"><ul>
+          <li>Analysed corporate credit portfolios with &pound;100Bn+ exposure</li>
+          <li>Delivered weekly risk briefings to senior stakeholder groups (up to 25 attendees)</li>
+          <li>Optimised SQL codebase, reducing update and processing times by 25%</li>
+          <li>Assisted in BASEL III: CRD IV model development</li>
+          <li>Led the technology team for the firm&rsquo;s Quants Expo Day, launching an interactive Jobs Board used by 400+ participants</li>
+          <li>Headed the data visualisation team as part of a pioneering Python migration project</li>
+        </ul></div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="icon">&#128736;</span> Skills &amp; Tools</div>
+    <div class="skills-grid">
+      <span class="skill-tag">Python</span>
+      <span class="skill-tag">SQL</span>
+      <span class="skill-tag">R</span>
+      <span class="skill-tag">SAS</span>
+      <span class="skill-tag">STATA</span>
+      <span class="skill-tag">C</span>
+      <span class="skill-tag">VBA</span>
+      <span class="skill-tag">JavaScript</span>
+      <span class="skill-tag">Flask</span>
+      <span class="skill-tag">Pandas</span>
+      <span class="skill-tag">GeoPandas</span>
+      <span class="skill-tag">Folium / Leaflet.js</span>
+      <span class="skill-tag">Mesa ABM</span>
+      <span class="skill-tag">Power BI</span>
+      <span class="skill-tag">Power Automate</span>
+      <span class="skill-tag">HTML / CSS</span>
+      <span class="skill-tag">Git</span>
+      <span class="skill-tag">REST APIs</span>
+      <span class="skill-tag">Office Suite</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="icon">&#127760;</span> Languages</div>
+    <div class="lang-grid">
+      <div class="lang-item">&#127468;&#127463; English <span class="lang-level">(Fluent)</span></div>
+      <div class="lang-item">&#127479;&#127482; Russian <span class="lang-level">(Fluent)</span></div>
+      <div class="lang-item">&#127465;&#127466; German <span class="lang-level">(Basic)</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="icon">&#9968;</span> Interests &amp; Charity</div>
+    <div class="interests-grid">
+      <span class="interest-tag">&#129495; Climbing</span>
+      <span class="interest-tag">&#9968; Mountaineering</span>
+      <span class="interest-tag">&#128200; Finance</span>
+      <span class="interest-tag">&#129302; Machine Learning</span>
+      <span class="interest-tag">&#128202; Royal Statistical Society</span>
+      <span class="interest-tag">&#128642; Transportation</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="icon">&#128187;</span> Projects</div>
+    <a href="https://scottish-railways.com" target="_blank" rel="noopener" class="project-highlight" style="background:linear-gradient(135deg,#e3f2fd,#bbdefb);">
+      <div class="title" style="color:#0D47A1;">&#128507; Scotland Railway Map &mdash; Interactive Station &amp; Line Explorer</div>
+      <div class="desc">Full-stack data visualisation app built with Python, Flask, Folium and Leaflet.js. Live departures and arrivals for 350+ Scottish stations via the National Rail LDBWS APIs, with colour-coded performance metrics and 37 periods of historical trend data.</div>
+    </a>
+    <a href="https://levenmouth-rail-abm.onrender.com" target="_blank" rel="noopener" class="project-highlight" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9);">
+      <div class="title" style="color:#1b5e20;">&#128202; Levenmouth Rail ABM &mdash; Economic Impact Analysis</div>
+      <div class="desc">Research project combining Difference-in-Differences econometrics and a Mesa agent-based model (3,700 resident agents, 60 businesses) to measure the employment effect of the Levenmouth Rail Link, reopened June 2024 after a 55-year closure. Includes an interactive simulation dashboard and long-form research article.</div>
+    </a>
+  </div>
+
+  <div class="footer-note">&copy; 2026 Aleksejs Belasovs &bull; Edinburgh, Scotland</div>
+</div>
+
+</body>
+</html>

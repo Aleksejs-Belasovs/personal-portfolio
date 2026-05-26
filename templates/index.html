@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aleksejs Belasovs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #f0f2f5; color: #1a1a2e; }
+
+    /* Header */
+    header {
+      background: #1a1a2e;
+      color: #fff;
+      padding: 0 2rem;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.18);
+    }
+    .header-brand { font-size: 15px; font-weight: 600; letter-spacing: -0.2px; color: #fff; text-decoration: none; }
+    nav { display: flex; gap: 4px; }
+    nav a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 7px;
+      transition: all 0.2s;
+    }
+    nav a:hover { color: #fff; background: rgba(255,255,255,0.08); }
+    nav a.active { color: #fff; background: rgba(255,255,255,0.1); }
+
+    /* Hero */
+    .hero {
+      background: #1a1a2e;
+      color: #fff;
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+    }
+    .hero-photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid rgba(255,255,255,0.15);
+      margin-bottom: 1.5rem;
+    }
+    .hero-photo-fallback {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #fff;
+      font-size: 36px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 4px solid rgba(255,255,255,0.15);
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.5rem;
+    }
+    .hero-title {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.6);
+      font-weight: 400;
+      margin-bottom: 1.5rem;
+    }
+    .hero-desc {
+      max-width: 560px;
+      margin: 0 auto 2rem;
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.7;
+    }
+    .hero-links { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 22px;
+      background: #2563eb;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn-primary:hover { background: #1d4ed8; transform: translateY(-1px); }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 22px;
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      border: 1px solid rgba(255,255,255,0.15);
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.18); transform: translateY(-1px); }
+
+    /* Projects */
+    .projects-section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem 5rem;
+    }
+    .section-heading {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: #2563eb;
+      margin-bottom: 1.5rem;
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+      transition: box-shadow 0.2s, transform 0.2s;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.12); transform: translateY(-3px); }
+    .card-banner {
+      height: 8px;
+    }
+    .card-banner.blue { background: linear-gradient(90deg, #2563eb, #60a5fa); }
+    .card-banner.green { background: linear-gradient(90deg, #16a34a, #4ade80); }
+    .card-body { padding: 1.75rem 1.75rem 2rem; flex: 1; display: flex; flex-direction: column; }
+    .card-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .card-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem; color: #1a1a2e; }
+    .card-subtitle { font-size: 0.8rem; color: #64748b; font-weight: 500; margin-bottom: 1rem; }
+    .card-desc { font-size: 0.88rem; color: #475569; line-height: 1.65; margin-bottom: 1.25rem; flex: 1; }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.25rem; }
+    .tag {
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 500;
+      background: #f1f5f9;
+      color: #475569;
+    }
+    .card-link {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #2563eb;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .card-link::after { content: '→'; }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 12px;
+      color: #94a3b8;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    @media (max-width: 600px) {
+      .hero { padding: 3.5rem 1.5rem 3rem; }
+      .hero h1 { font-size: 1.8rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      header { padding: 0 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="/" class="header-brand">Aleksejs Belasovs</a>
+  <nav>
+    <a href="/" class="active">Projects</a>
+    <a href="/about">About</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <img src="/static/assets/image.jpg" alt="Aleksejs Belasovs" class="hero-photo"
+       onerror="this.style.display='none';document.getElementById('hero-fallback').style.display='inline-flex';">
+  <div id="hero-fallback" class="hero-photo-fallback" style="display:none;">AB</div>
+  <h1>Aleksejs Belasovs</h1>
+  <div class="hero-title">Data &amp; AI Scientist</div>
+  <p class="hero-desc">
+    I build data-driven tools and economic models that make the case for better transport infrastructure.
+    Based in Edinburgh, working at Lloyds Banking Group.
+  </p>
+  <div class="hero-links">
+    <a href="https://www.linkedin.com/in/aleksejsbelasovs/" target="_blank" rel="noopener" class="btn-primary">
+      LinkedIn
+    </a>
+    <a href="/about" class="btn-secondary">About Me</a>
+    <a href="mailto:abelasovs2002@gmail.com" class="btn-secondary">Email</a>
+  </div>
+</div>
+
+<div class="projects-section">
+  <p class="section-heading">Projects</p>
+  <div class="projects-grid">
+
+    <a href="https://scottish-railways.com" target="_blank" rel="noopener" class="project-card">
+      <div class="card-banner blue"></div>
+      <div class="card-body">
+        <div class="card-icon">&#128507;</div>
+        <div class="card-title">Scotland Railway Map</div>
+        <div class="card-subtitle">Full-stack data visualisation &bull; Live</div>
+        <p class="card-desc">
+          Interactive map of all 350+ Scottish railway stations with real-time departures,
+          arrivals, and full route detail via the National Rail LDBWS APIs. Colour-coded
+          by usage, punctuality, or cancellation rate, with 37 periods of historical trend data.
+        </p>
+        <div class="card-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Flask</span>
+          <span class="tag">Folium</span>
+          <span class="tag">Leaflet.js</span>
+          <span class="tag">National Rail API</span>
+        </div>
+        <span class="card-link">scottish-railways.com</span>
+      </div>
+    </a>
+
+    <a href="https://levenmouth-rail-abm.onrender.com" target="_blank" rel="noopener" class="project-card">
+      <div class="card-banner green"></div>
+      <div class="card-body">
+        <div class="card-icon">&#128202;</div>
+        <div class="card-title">Levenmouth Rail ABM</div>
+        <div class="card-subtitle">Economic research &bull; Agent-Based Model &bull; DiD econometrics</div>
+        <p class="card-desc">
+          Research project measuring the employment impact of the Levenmouth Rail Link
+          (reopened June 2024 after a 55-year closure) using Difference-in-Differences
+          econometrics and a Mesa agent-based simulation with 3,700 resident agents.
+          Includes a long-form article and interactive simulation dashboard.
+        </p>
+        <div class="card-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Mesa ABM</span>
+          <span class="tag">Flask</span>
+          <span class="tag">Plotly.js</span>
+          <span class="tag">DiD / TWFE</span>
+        </div>
+        <span class="card-link">View project</span>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<footer>&copy; 2026 Aleksejs Belasovs &bull; Edinburgh, Scotland</footer>
+
+</body>
+</html>
